@@ -1612,6 +1612,11 @@
       else { el.remove(); }
     });
 
+    if (!document.querySelector('.session-card.has-next')) {
+      const book = document.querySelector('.nav-book');
+      if (book) { book.textContent = 'Join'; book.setAttribute('href', '#enter'); }
+    }
+
     document.getElementById('kit-form').addEventListener('submit', async function(e) {
       e.preventDefault();
       const input = document.getElementById('email-input');
