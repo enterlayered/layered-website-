@@ -65,7 +65,8 @@
     }
     .nav-link:hover { opacity: 1; }
     .nav-left { display: flex; align-items: center; justify-self: start; }
-    .nav-center { justify-self: center; display: flex; }
+    .nav-center { justify-self: center; display: flex; opacity: 0; pointer-events: none; transition: opacity 0.6s ease; }
+    nav.show-logo .nav-center, nav.open .nav-center { opacity: 1; pointer-events: auto; }
     .nav-right { display: flex; align-items: center; gap: 28px; justify-self: end; }
     .nav-links { display: flex; align-items: center; gap: 34px; }
     .nav-book {
@@ -1572,6 +1573,19 @@
 
   <script>
     const nav = document.getElementById('nav');
+    const heroMarks = document.querySelectorAll('.hero-mark, .hero-mark-mobile');
+    const logoObserver = new IntersectionObserver(() => {
+      const anyVisible = [...heroMarks].some(m => {
+        const r = m.getBoundingClientRect();
+        return r.height > 0 && r.bottom > 80;
+      });
+      nav.classList.toggle('show-logo', !anyVisible);
+    }, { threshold: [0, 0.25, 0.5, 1] });
+    heroMarks.forEach(m => logoObserver.observe(m));
+    window.addEventListener('scroll', () => {
+      const anyVisible = [...heroMarks].some(m => { const r = m.getBoundingClientRect(); return r.height > 0 && r.bottom > 80; });
+      nav.classList.toggle('show-logo', !anyVisible);
+    }, { passive: true });
     const toggle = nav.querySelector('.nav-toggle');
     toggle.addEventListener('click', () => {
       const open = nav.classList.toggle('open');
