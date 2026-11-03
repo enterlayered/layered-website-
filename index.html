@@ -201,11 +201,11 @@
     .why-intro {
       font-family: 'Raleway', sans-serif;
       font-weight: 300;
-      font-size: 11px;
+      font-size: 12px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--champagne);
-      opacity: 0.5;
+      opacity: 0.72;
       margin-bottom: 48px;
     }
     /* ── WHY LAYERED EXISTS ── */
@@ -274,7 +274,7 @@
       letter-spacing: 0.28em;
       text-transform: uppercase;
       color: var(--mauve);
-      opacity: 0.6;
+      opacity: 0.8;
       margin-bottom: 20px;
       padding-bottom: 12px;
       border-bottom: 1px solid rgba(200,168,176,0.1);
@@ -299,10 +299,10 @@
       white-space: nowrap;
     }
     .offering-desc {
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 300;
       color: var(--champagne);
-      opacity: 0.55;
+      opacity: 0.78;
       letter-spacing: 0.08em;
       line-height: 1.7;
       text-align: right;
@@ -333,7 +333,7 @@
       font-size: 12px;
       letter-spacing: 0.12em;
       color: var(--champagne);
-      opacity: 0.55;
+      opacity: 0.75;
       line-height: 1.8;
       max-width: 460px;
       margin: 0 auto 64px;
@@ -383,7 +383,7 @@
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--champagne);
-      opacity: 0.5;
+      opacity: 0.72;
       line-height: 2;
       padding-top: 18px;
       border-top: 1px solid rgba(200,168,176,0.1);
@@ -417,9 +417,9 @@
       font-family: 'Cormorant Garamond', serif; font-weight: 400;
       font-size: 1.3rem; color: var(--nude);
     }
-    .next-where { font-size: 11px; letter-spacing: 0.08em; color: var(--champagne); opacity: 0.6; margin-bottom: 8px; }
+    .next-where { font-size: 11px; letter-spacing: 0.08em; color: var(--champagne); opacity: 0.78; margin-bottom: 8px; }
     .session-link {
-      font-size: 10px; letter-spacing: 0.14em; color: var(--champagne); opacity: 0.5;
+      font-size: 10px; letter-spacing: 0.14em; color: var(--champagne); opacity: 0.72;
       text-decoration: none; margin-top: 8px; transition: opacity 0.3s;
     }
     .session-link:hover { opacity: 0.9; }
@@ -483,7 +483,7 @@
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--mauve);
-      opacity: 0.65;
+      opacity: 0.85;
     }
     .founder-bio {
       font-family: 'Cormorant Garamond', serif;
@@ -538,7 +538,7 @@
       font-weight: 300;
       letter-spacing: 0.12em;
       color: var(--champagne);
-      opacity: 0.5;
+      opacity: 0.72;
       line-height: 1.8;
       max-width: 420px;
       margin: 0 auto 52px;
@@ -595,7 +595,7 @@
     }
     .form-note {
       font-size: 10px; letter-spacing: 0.13em;
-      color: var(--champagne); opacity: 0.35;
+      color: var(--champagne); opacity: 0.6;
     }
 
     /* ── FOOTER ── */
@@ -620,7 +620,7 @@
       opacity: 0.55; text-decoration: none; transition: opacity 0.3s;
     }
     .footer-email:hover { opacity: 0.95; }
-    .footer-copy { font-size: 10px; letter-spacing: 0.1em; color: var(--champagne); opacity: 0.2; }
+    .footer-copy { font-size: 10px; letter-spacing: 0.1em; color: var(--champagne); opacity: 0.4; }
 
     /* ── ANIMATIONS ── */
     @keyframes fadeUp {
@@ -638,6 +638,10 @@
       nav { padding: 20px 24px; }
       nav.scrolled { padding: 14px 24px; }
       .nav-links, .nav-ig { display: none; }
+      .nav-center { opacity: 1; pointer-events: auto; }
+      .founder-title span { display: block; }
+      .founder-title .ft-dot { display: none; }
+      .founder-title { line-height: 1.9; }
       .nav-toggle { display: block; }
       .nav-book { padding: 9px 16px; }
       .nav-logo { width: 120px; }
@@ -1335,7 +1339,7 @@
     <div class="founder-content">
       <span class="section-eyebrow">The founder</span>
       <h2 class="founder-name">Toni Scott</h2>
-      <p class="founder-title">Movement Educator &nbsp;&middot;&nbsp; Sensory Creative Director</p>
+      <p class="founder-title"><span>Movement Educator</span><span class="ft-dot"> &nbsp;&middot;&nbsp; </span><span>Sensory Creative Director</span></p>
       <p class="founder-bio">
         Layered began with a single observation made in a room full of people learning to move: <em>the environment was doing as much work as the choreography.</em>
       </p>
