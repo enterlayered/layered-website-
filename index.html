@@ -1641,18 +1641,26 @@
       btn.textContent = '...';
       btn.disabled = true;
       try {
+        const data = new FormData();
+        data.append('email_address', email);
         const res = await fetch('https://app.convertkit.com/forms/9564575/subscriptions', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email_address: email })
+          headers: { 'Accept': 'application/json' },
+          body: data
         });
-        if (res.ok || res.status === 200 || res.status === 201) {
+        let ok = res.ok;
+        try {
+          const body = await res.clone().json();
+          if (body && body.status) ok = (body.status === 'success');
+        } catch (_) {}
+        if (ok) {
           input.style.display = 'none';
           btn.style.display = 'none';
-          note.textContent = "You’re in. We’ll be in touch.";
+          note.innerHTML = 'Almost there.<br>Check your inbox to confirm. If you don\u2019t see it, look in Promotions or Spam.';
           note.style.opacity = '0.85';
           note.style.color = 'var(--gold)';
-          note.style.letterSpacing = '0.16em';
+          note.style.letterSpacing = '0.12em';
+          note.style.lineHeight = '1.9';
           note.style.fontSize = '11px';
         } else { throw new Error(); }
       } catch(err) {
