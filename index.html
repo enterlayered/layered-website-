@@ -363,6 +363,24 @@
       color: var(--nude);
     }
 
+    .next-session { display: flex; flex-direction: column; gap: 6px; }
+    .next-label {
+      font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--rose-gold); opacity: 0.9;
+    }
+    .next-when {
+      font-family: 'Cormorant Garamond', serif; font-weight: 400;
+      font-size: 1.3rem; color: var(--nude);
+    }
+    .next-where { font-size: 11px; letter-spacing: 0.08em; color: var(--champagne); opacity: 0.6; margin-bottom: 8px; }
+    .session-link {
+      font-size: 10px; letter-spacing: 0.14em; color: var(--champagne); opacity: 0.5;
+      text-decoration: none; margin-top: 8px; transition: opacity 0.3s;
+    }
+    .session-link:hover { opacity: 0.9; }
+    .session-card.has-next .default-status,
+    .session-card.has-next .default-btn { display: none; }
+
     /* ── FOUNDER ── */
     .founder {
       padding: 100px 32px;
@@ -1203,16 +1221,23 @@
        change the button text to "Reserve", and update the status line with the date, time, and price. -->
   <section class="sessions reveal" id="sessions">
     <span class="section-eyebrow">Sessions</span>
-    <h2 class="sessions-headline">The first Layered sessions are being designed.</h2>
-    <p class="sessions-sub">Dates open to the list first. Join below and you'll hear before anyone else.</p>
+    <h2 class="sessions-headline">Step into a Layered session.</h2>
+    <p class="sessions-sub">Book what's open now, or join the list and hear about new dates before anyone else.</p>
 
     <div class="session-grid">
       <div class="session-card">
         <span class="session-meta">Movement Program</span>
         <h3 class="session-name">Scentual Instinct&trade;</h3>
         <p class="session-desc">Scent is the sensory anchor. It shapes mood, presence, and the quality of movement from the moment you walk in. Explorative, never choreographed.</p>
-        <p class="session-status">Sessions &middot; 60 min<br>Immersions &middot; 90 min<br>Dates coming soon</p>
-        <a href="#enter" class="session-btn">Get first access</a>
+        <p class="session-status">Sessions &middot; 60 min<br>Immersions &middot; 90 min<br><span class="default-status">Dates coming soon</span></p>
+        <div class="next-session" data-ends="2026-11-15T17:30:00-06:00">
+          <span class="next-label">Next session</span>
+          <span class="next-when">Sun, Nov 15 &nbsp;&middot;&nbsp; 4:30 PM</span>
+          <span class="next-where">at Soft Sensuous Moves, San Antonio</span>
+          <a href="https://get.mndbdy.ly/ZOMT7h8qv7b" class="session-btn" target="_blank" rel="noopener">Book Nov 15</a>
+          <a href="#enter" class="session-link">Or join the list for future dates</a>
+        </div>
+        <a href="#enter" class="session-btn default-btn">Get first access</a>
       </div>
       <div class="session-card honeyed">
         <span class="session-meta">Movement Program</span>
@@ -1493,6 +1518,12 @@
       });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    document.querySelectorAll('.next-session').forEach(el => {
+      const card = el.closest('.session-card');
+      if (Date.now() < new Date(el.dataset.ends).getTime()) { card.classList.add('has-next'); }
+      else { el.remove(); }
+    });
 
     document.getElementById('kit-form').addEventListener('submit', async function(e) {
       e.preventDefault();
