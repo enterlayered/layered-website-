@@ -64,6 +64,18 @@
       white-space: nowrap;
     }
     .nav-link:hover { opacity: 1; }
+    .nav-links { display: flex; align-items: center; gap: 34px; }
+    .nav-sep { width: 1px; height: 12px; background: rgba(200,168,176,0.3); }
+    .nav-book {
+      display: none;
+      font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase;
+      color: var(--gold); text-decoration: none;
+      border: 1px solid rgba(201,162,77,0.45);
+      padding: 9px 18px;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .nav-book:hover { background: rgba(201,162,77,0.08); border-color: rgba(201,162,77,0.8); }
+    section[id] { scroll-margin-top: 70px; }
 
     /* ── HERO ── */
     .hero {
@@ -587,7 +599,8 @@
     @media (max-width: 640px) {
       nav { padding: 20px 24px; }
       nav.scrolled { padding: 14px 24px; }
-      .nav-link { display: none; }
+      .nav-links { display: none; }
+      .nav-book { display: inline-block; }
       .nav-logo { width: 120px; }
       .hero-mark { display: none; }
       .hero-mark-mobile { display: block; }
@@ -827,7 +840,14 @@
 	</g>
 </g>
 </svg>
-    <a href="https://instagram.com/enterlayered" class="nav-link" target="_blank" rel="noopener">@enterlayered</a>
+    <div class="nav-links">
+      <a href="#sessions" class="nav-link">Sessions</a>
+      <a href="#founder" class="nav-link">Founder</a>
+      <a href="#enter" class="nav-link">Join</a>
+      <span class="nav-sep" aria-hidden="true"></span>
+      <a href="https://instagram.com/enterlayered" class="nav-link" target="_blank" rel="noopener">@enterlayered</a>
+    </div>
+    <a href="#sessions" class="nav-book">Book</a>
   </nav>
 
   <!-- HERO -->
@@ -1259,7 +1279,7 @@
   </section>
 
   <!-- FOUNDER -->
-  <section class="founder reveal">
+  <section class="founder reveal" id="founder">
     <figure class="founder-photo">
       <img src="images/founder.jpg" alt="Portrait of Toni Scott, founder of Layered" loading="lazy" width="1200" height="1600" />
     </figure>
