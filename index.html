@@ -8,9 +8,17 @@
   <meta property="og:title" content="Layered" />
   <meta property="og:description" content="Sensation leads. Everything follows." />
   <meta property="og:url" content="https://enterlayered.com" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Layered" />
+  <meta property="og:image" content="https://enterlayered.com/images/share.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Layered logo on deep plum. Sensation leads. Everything follows." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://enterlayered.com/images/share.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Raleway:wght@300;400&display=swap" rel="stylesheet" />
   <style>
     :root {
       --plum-deep:  #2D0A1F;
@@ -27,7 +35,7 @@
     body {
       background-color: var(--plum-deep);
       color: var(--nude);
-      font-family: 'Jost', sans-serif;
+      font-family: 'Raleway', sans-serif;
       font-weight: 300;
       letter-spacing: 0.04em;
       overflow-x: hidden;
@@ -52,7 +60,7 @@
     }
     .nav-logo { width: 160px; opacity: 0.9; flex-shrink: 0; }
     .nav-link {
-      font-family: 'Jost', sans-serif;
+      font-family: 'Raleway', sans-serif;
       font-weight: 300;
       font-size: 10px;
       letter-spacing: 0.2em;
@@ -97,7 +105,7 @@
       font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 300;
       color: var(--nude); text-decoration: none; letter-spacing: 0.02em;
     }
-    .nav-panel a:last-child { font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--champagne); opacity: 0.7; }
+    .nav-panel a:last-child { font-family: 'Raleway', sans-serif; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--champagne); opacity: 0.7; }
     nav.open { background: rgba(45,10,31,0.97); }
     nav.open .nav-panel { display: flex; }
     section[id] { scroll-margin-top: 70px; }
@@ -191,7 +199,7 @@
 
 
     .why-intro {
-      font-family: 'Jost', sans-serif;
+      font-family: 'Raleway', sans-serif;
       font-weight: 300;
       font-size: 11px;
       letter-spacing: 0.18em;
@@ -550,7 +558,7 @@
       border: none;
       border-bottom: 1px solid rgba(200,168,176,0.3);
       padding: 14px 0;
-      font-family: 'Jost', sans-serif;
+      font-family: 'Raleway', sans-serif;
       font-weight: 300;
       font-size: 13px;
       letter-spacing: 0.1em;
@@ -570,7 +578,7 @@
       background: transparent;
       border: 1px solid rgba(201,162,77,0.4);
       color: var(--gold);
-      font-family: 'Jost', sans-serif;
+      font-family: 'Raleway', sans-serif;
       font-weight: 300;
       font-size: 10px;
       letter-spacing: 0.3em;
@@ -607,6 +615,11 @@
       transition: opacity 0.3s; display: flex; align-items: center;
     }
     .footer-social:hover { opacity: 0.9; }
+    .footer-email {
+      font-size: 11px; letter-spacing: 0.14em; color: var(--champagne);
+      opacity: 0.55; text-decoration: none; transition: opacity 0.3s;
+    }
+    .footer-email:hover { opacity: 0.95; }
     .footer-copy { font-size: 10px; letter-spacing: 0.1em; color: var(--champagne); opacity: 0.2; }
 
     /* ── ANIMATIONS ── */
@@ -1247,14 +1260,14 @@
           <svg width="6" height="6" viewBox="0 0 6 6" aria-hidden="true"><circle cx="3" cy="3" r="3" fill="#C49A8A"/></svg>
           <span class="offering-name">Scentual Instinct™</span>
         </div>
-        <span class="offering-desc">Scent serves as the sensory anchor — shaping mood, presence, and the quality of movement from the moment the experience begins.</span>
+        <span class="offering-desc">Movement guided by scent.</span>
       </div>
       <div class="offering">
         <div class="offering-left">
           <svg width="6" height="6" viewBox="0 0 6 6" aria-hidden="true"><circle cx="3" cy="3" r="3" fill="#C9A24D"/></svg>
           <span class="offering-name">Honeyed™</span>
         </div>
-        <span class="offering-desc">Slow, sensual movement centered on tempo, presence, and intentional expression.</span>
+        <span class="offering-desc">Movement guided by tempo.</span>
       </div>
     </div>
 
@@ -1567,6 +1580,7 @@
         <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
       </svg>
     </a>
+      <a href="mailto:hello@enterlayered.com" class="footer-email">hello@enterlayered.com</a>
       <p class="footer-copy">&copy; 2026 Layered™ &middot; All Rights Reserved</p>
     </div>
   </footer>
