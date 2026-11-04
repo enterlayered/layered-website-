@@ -426,6 +426,42 @@
     .session-card.has-next .default-status,
     .session-card.has-next .default-btn { display: none; }
 
+    /* Date list (one row per date; rows remove themselves after data-ends) */
+    .dates { display: flex; flex-direction: column; border-top: 1px solid rgba(200,168,176,0.1); padding-top: 14px; }
+    .date-row { display: flex; flex-direction: column; gap: 4px; padding: 18px 0; border-bottom: 1px solid rgba(200,168,176,0.08); }
+    .date-row:last-child { border-bottom: none; }
+    .dr-type { font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--rose-gold); opacity: 0.9; }
+    .session-card.honeyed .dr-type { color: var(--gold); }
+    .dr-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+    .dr-when { line-height: 1.3; }
+    .dr-price { padding-top: 6px; }
+    .dr-when { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 1.25rem; color: var(--nude); }
+    .dr-price { font-size: 11px; letter-spacing: 0.12em; color: var(--gold); white-space: nowrap; }
+    .dr-where { font-size: 11px; letter-spacing: 0.08em; color: var(--champagne); opacity: 0.78; }
+    .date-row .session-btn { padding: 12px 26px; margin-top: 10px; }
+    .date-row.full .dr-when { opacity: 0.5; }
+    .full-tag { font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--champagne); opacity: 0.7; margin-top: 8px; }
+    .full-tag a { color: var(--gold); text-decoration: none; }
+    .session-card:not(.has-next) .dates,
+    .session-card:not(.has-next) .session-link { display: none; }
+
+    /* What to expect (tap to open) */
+    .expect { margin: 44px auto 0; max-width: 960px; text-align: left; border-top: 1px solid rgba(200,168,176,0.14); border-bottom: 1px solid rgba(200,168,176,0.14); }
+    .expect summary { list-style: none; cursor: pointer; padding: 22px 4px; display: flex; justify-content: space-between; align-items: center;
+      font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); }
+    .expect summary::-webkit-details-marker { display: none; }
+    .expect summary::after { content: '+'; font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; letter-spacing: 0; transition: transform 0.3s; }
+    .expect[open] summary::after { transform: rotate(45deg); }
+    .layers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(200,168,176,0.12); margin-bottom: 24px; }
+    .layer { background: var(--plum-deep); padding: 22px; display: flex; gap: 16px; }
+    .layer .num { font-family: 'Cormorant Garamond', serif; color: var(--gold); font-size: 1.1rem; min-width: 26px; }
+    .layer b { display: block; font-weight: 400; font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--nude); margin-bottom: 6px; }
+    .layer p { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; line-height: 1.6; color: var(--nude); opacity: 0.7; }
+    .expect + .expect { margin-top: 0; border-top: none; }
+    .know { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; padding: 4px 4px 28px; }
+    .know b { display: block; font-weight: 400; font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--rose-gold); margin-bottom: 8px; }
+    .know p { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; line-height: 1.65; color: var(--nude); opacity: 0.72; }
+
     /* ── FOUNDER ── */
     .founder {
       padding: 100px 32px;
@@ -656,6 +692,8 @@
       .sessions { padding: 70px 24px 90px; }
       .session-grid { grid-template-columns: 1fr; gap: 20px; }
       .session-card { padding: 32px 26px; }
+      .layers { grid-template-columns: 1fr; }
+      .know { grid-template-columns: 1fr; gap: 22px; }
       .founder { grid-template-columns: 1fr; gap: 48px; padding: 80px 24px; }
       .founder-photo { aspect-ratio: 3/4; width: 100%; max-width: 360px; margin: 0 auto; }
       .entry { padding: 90px 24px; }
@@ -1299,36 +1337,65 @@
   </section>
 
   <!-- SESSIONS
-       When dates are set: replace each button's href="#enter" with the Square payment link,
-       change the button text to "Reserve", and update the status line with the date, time, and price. -->
+       HOW TO ADD A DATE: copy a <div class="date-row"> block into that program's <div class="dates">.
+       - data-ends = when the session ends (the row disappears on its own after that time)
+       - dr-type   = "Session &middot; 60 min" or "Immersion &middot; 90 min" (keep 60/90 here)
+       - dr-when   = date, then <br>, then start&ndash;end time; end time includes the 10-min buffer
+                     (Session 4:00 &ndash; 5:10 PM, Immersion 4:00 &ndash; 5:40 PM)
+       - dr-price  = the price (e.g. $45), or "via SSM" for SSM-booked dates
+       - button href = the Square payment link (or the studio's booking link)
+       SOLD OUT: add class "full" to the row and swap the button for:
+         <span class="full-tag">Fully booked &middot; <a href="#enter">Join the waitlist</a></span>
+       When a program has no upcoming rows, its card shows "Dates coming soon" automatically. -->
   <section class="sessions reveal" id="sessions">
     <span class="section-eyebrow">Sessions</span>
     <h2 class="sessions-headline">Step into a Layered session.</h2>
     <p class="sessions-sub">Book what's open now, or join the list and hear about new dates before anyone else.</p>
-
     <div class="session-grid">
       <div class="session-card">
         <span class="session-meta">Movement Program</span>
         <h3 class="session-name">Scentual Instinct&trade;</h3>
         <p class="session-desc">Scent is the sensory anchor. It shapes mood, presence, and the quality of movement from the moment you walk in. Explorative, never choreographed.</p>
-        <p class="session-status">Sessions &middot; 60 min<br>Immersions &middot; 90 min<br><span class="default-status">Dates coming soon</span></p>
-        <div class="next-session" data-ends="2026-11-15T18:00:00-06:00">
-          <span class="next-label">Next session</span>
-          <span class="next-when">Sun, Nov 15<br>4:45 &ndash; 5:55 PM</span>
-          <span class="next-where">at Soft Sensuous Moves, San Antonio</span>
-          <a href="https://get.mndbdy.ly/ZOMT7h8qv7b" class="session-btn" target="_blank" rel="noopener">Book Nov 15</a>
-          <a href="#enter" class="session-link">Or join the list for future dates</a>
+        <div class="dates">
+          <div class="date-row" data-ends="2026-11-15T18:00:00-06:00">
+            <span class="dr-type">Session &middot; 60 min</span>
+            <div class="dr-top"><span class="dr-when">Sun, Nov 15<br>4:45 &ndash; 5:55 PM</span><span class="dr-price">via SSM</span></div>
+            <span class="dr-where">at Soft Sensuous Moves, San Antonio</span>
+            <a href="https://get.mndbdy.ly/ZOMT7h8qv7b" class="session-btn" target="_blank" rel="noopener">Book Nov 15</a>
+          </div>
         </div>
+        <a href="#enter" class="session-link">Or join the list for future dates</a>
+        <p class="session-status default-status">Sessions &middot; 60 min<br>Immersions &middot; 90 min<br>Dates coming soon</p>
         <a href="#enter" class="session-btn default-btn">Get first access</a>
       </div>
       <div class="session-card honeyed">
         <span class="session-meta">Movement Program</span>
         <h3 class="session-name">Honeyed&trade;</h3>
         <p class="session-desc">Slow, sensual movement built on tempo, presence, and intentional expression.</p>
-        <p class="session-status">Sessions &middot; 60 min<br>Immersions &middot; 90 min<br>Dates coming soon</p>
-        <a href="#enter" class="session-btn">Get first access</a>
+        <div class="dates">
+        </div>
+        <a href="#enter" class="session-link">Or join the list for future dates</a>
+        <p class="session-status default-status">Sessions &middot; 60 min<br>Immersions &middot; 90 min<br>Dates coming soon</p>
+        <a href="#enter" class="session-btn default-btn">Get first access</a>
       </div>
     </div>
+    <details class="expect">
+      <summary>What to expect</summary>
+      <div class="layers">
+        <div class="layer"><span class="num">I</span><div><b>Intention</b><p>Arrive, settle, and choose what you're moving toward.</p></div></div>
+        <div class="layer"><span class="num">II</span><div><b>Sensory Anchor</b><p>Scent, sound, and light set the atmosphere before the first move.</p></div></div>
+        <div class="layer"><span class="num">III</span><div><b>Movement</b><p>Guided movement shaped by the room around you.</p></div></div>
+        <div class="layer"><span class="num">IV</span><div><b>Closure</b><p>A slow return, so the feeling stays with you.</p></div></div>
+      </div>
+    </details>
+    <details class="expect">
+      <summary>Good to know</summary>
+      <div class="know">
+        <div><b>What to wear</b><p>Something you can move freely in &mdash; fitted or flowy, whatever feels good on you. Barefoot or socks; heels optional. Knee pads are optional for floorwork. Skip strong perfume or body spray &mdash; the atmosphere is designed for you.</p></div>
+        <div><b>Arrival</b><p>Arrive 5&ndash;10 minutes early to settle in. Every Layered movement offering opens with Intention, so doors close 10 minutes after start to protect the integrity of the space.</p></div>
+        <div><b>Cancellations</b><p>Plans change. Cancel at least 24 hours before a Session (48 for an Immersion) for a full refund or credit toward another date. Inside that window, you're welcome to move to another date once or send someone in your place. Dates booked through a partner studio follow that studio's policy.</p></div>
+      </div>
+    </details>
   </section>
 
   <!-- FOUNDER -->
@@ -1624,10 +1691,11 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    document.querySelectorAll('.next-session').forEach(el => {
-      const card = el.closest('.session-card');
-      if (Date.now() < new Date(el.dataset.ends).getTime()) { card.classList.add('has-next'); }
-      else { el.remove(); }
+    document.querySelectorAll('.date-row[data-ends]').forEach(row => {
+      if (Date.now() >= new Date(row.dataset.ends).getTime()) row.remove();
+    });
+    document.querySelectorAll('.session-card').forEach(card => {
+      if (card.querySelector('.date-row')) card.classList.add('has-next');
     });
 
     if (!document.querySelector('.session-card.has-next')) {
