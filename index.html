@@ -458,8 +458,11 @@
     .layer b { display: block; font-weight: 400; font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--nude); margin-bottom: 6px; }
     .layer p { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; line-height: 1.6; color: var(--nude); opacity: 0.7; }
     .expect + .expect { margin-top: 0; border-top: none; }
-    .gift-line { margin-top: 34px; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--champagne); opacity: 0.85; }
-    .gift-line a { color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(201,162,77,0.4); padding-bottom: 2px; }
+    .gift-block { margin: 56px auto 0; max-width: 520px; text-align: center; padding: 48px 28px; border: 1px solid rgba(201,162,77,0.28); background: rgba(92,26,58,0.14); }
+    .gift-eyebrow { display: block; font-size: 9px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold); opacity: 0.85; margin-bottom: 16px; }
+    .gift-title { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300; font-size: clamp(1.6rem, 3.2vw, 2.2rem); color: var(--nude); margin-bottom: 14px; }
+    .gift-sub { font-family: 'Cormorant Garamond', serif; font-size: 1.08rem; line-height: 1.65; color: var(--nude); opacity: 0.72; margin-bottom: 22px; }
+    .gift-btn { align-self: auto; }
     .know { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; padding: 4px 4px 28px; }
     .know b { display: block; font-weight: 400; font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--rose-gold); margin-bottom: 8px; }
     .know p { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; line-height: 1.65; color: var(--nude); opacity: 0.72; }
@@ -714,6 +717,7 @@
     <div class="nav-left">
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-panel"><span></span><span></span></button>
       <div class="nav-links">
+        <a href="https://app.squareup.com/gift/ML7RNDQED2XG2/order" class="nav-link" target="_blank" rel="noopener">Gifts</a>
         <a href="#founder" class="nav-link">Founder</a>
         <a href="#enter" class="nav-link">Join</a>
       </div>
@@ -934,6 +938,7 @@
     </div>
     <div class="nav-panel" id="nav-panel">
       <a href="#sessions">Reserve</a>
+      <a href="https://app.squareup.com/gift/ML7RNDQED2XG2/order" target="_blank" rel="noopener">Gift cards</a>
       <a href="#founder">Founder</a>
       <a href="#enter">Join the list</a>
       <a href="https://instagram.com/enterlayered" target="_blank" rel="noopener">@enterlayered</a>
@@ -1395,7 +1400,12 @@
         <div><b>Cancellations</b><p>Plans change. Cancel at least 24 hours before a Session (48 for an Immersion) for a full refund or credit toward another date. Inside that window, you're welcome to move to another date once or send someone in your place. Dates booked through a partner studio follow that studio's policy.</p></div>
       </div>
     </details>
-    <p class="gift-line">Give the experience &middot; <a href="https://app.squareup.com/gift/ML7RNDQED2XG2/order" target="_blank" rel="noopener">Layered eGift Cards</a></p>
+    <div class="gift-block">
+      <span class="gift-eyebrow">Layered eGift Cards</span>
+      <h3 class="gift-title">Give the experience.</h3>
+      <p class="gift-sub">An invitation to feel everything. Redeem toward any Layered Session or Immersion. Delivered instantly by email.</p>
+      <a href="https://app.squareup.com/gift/ML7RNDQED2XG2/order" class="session-btn gift-btn" target="_blank" rel="noopener">Gift Cards</a>
+    </div>
   </section>
 
   <!-- FOUNDER -->
